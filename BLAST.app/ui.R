@@ -25,10 +25,30 @@ shinyUI(fluidPage(
       radioButtons("trait", #the input variable that the value will go into
                    "Choose a trait to display:",
                    c("pct_ident",
-                     "len",
+                     "gaps",
                      "mis",
                      "E")
       )),
+      sliderInput("pct_ident",
+                "Percent Identity",
+                min = 0,
+                max = 100,
+                value = 20),
+      sliderInput("gaps",
+                "Gaps",
+                min = 0,
+                max = 60,
+                value = 10),
+    sliderInput("mis",
+                "Mismatches",
+                min = 0,
+                max = 1200,
+                value = 300),
+    sliderInput("E",
+                "E Value",
+                min = 0,
+                max = 10,
+                value = 2.5),
     
     # Show a plot of the generated distribution
     mainPanel(plotOutput("scatterPlot")
