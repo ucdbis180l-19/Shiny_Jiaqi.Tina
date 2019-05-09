@@ -13,21 +13,25 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("Plant and Worm BLAST Data"),
+
+  # Some helpful information
+  helpText("This application creates a scatterplot to show how trait affects the relationship between score and sequence length.  Please use the radio box below to choose a trait",
+           "for plotting"),
   
-  # Sidebar with a slider input for number of bins 
+  # Sidebar with a radio box to input which trait will be plotted
   sidebarLayout(
     sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
-    ),
+      radioButtons("trait", #the input variable that the value will go into
+                   "Choose a trait to display:",
+                   c("pct_ident",
+                     "len",
+                     "mis",
+                     "E")
+      )),
     
     # Show a plot of the generated distribution
-    mainPanel(
-       plotOutput("distPlot")
+    mainPanel(plotOutput("scatterPlot")
     )
   )
 ))
