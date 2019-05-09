@@ -13,10 +13,10 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Plant and Worm BLAST Data"),
+  titlePanel("Worm and Plant BLAST Data"),
 
   # Some helpful information
-  helpText("This application creates a scatterplot to show how trait affects the relationship between score and sequence length.  Please use the radio box below to choose a trait",
+  helpText("This application creates a scatterplot to show how trait affects the relationship between score and sequence length of a worm and plant BLAST.  Please use the radio box below to choose a trait",
            "for plotting"),
   
   # Sidebar with a radio box to input which trait will be plotted
