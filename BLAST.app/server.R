@@ -7,7 +7,8 @@
 #    http://shiny.rstudio.com/
 #
 library(tidyverse)
-worm_plant <- read_tsv("~/Downloads/worm_vs_plant.blastout_v2.1.gz",col_names=FALSE)
+worm_plant <- read_tsv("worm_vs_plant.blastout_v2.1.gz",col_names=FALSE)
+
 colnames(worm_plant) <- c("query_id",
                           "subject_id",
                           "pct_ident",

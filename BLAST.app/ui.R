@@ -12,17 +12,17 @@ library(shiny)
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
   
-  titlePanel("Sliders","Worm and Plant BLAST Data"),
+  titlePanel("Worm and Plant BLAST Data"),
   
   helpText("This application creates a scatterplot to show how trait affects the relationship between score and sequence length of a worm and plant BLAST.  Please use the radio box below to choose a trait",
-           "for plotting"),
+           "for coloring in the plot and values in each trait in the slider"),
   # Sidebar layout with input and output definitions ----
   sidebarLayout(
     
     # Sidebar to demonstrate various slider options ----
     sidebarPanel(
       radioButtons("trait", #the input variable that the value will go into
-                   "Choose a trait to display:",
+                   "Choose a trait to display the color of:",
                    c("pct_ident",
                      "gaps",
                      "mis",
