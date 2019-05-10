@@ -36,10 +36,10 @@ shinyServer(function(input, output) {
   output$scatterPlot <- renderPlot({
     
     # set up the plot
-    plotdata <- worm_plant %>% filter(pct_ident > input$pct_ident)
-     %>% filter(gaps > input$gaps)
-    %>% filter(mis > input$mis)
-    %>%  filter(E > input$E)
+    plotdata <- worm_plant %>% filter(pct_ident > input$pct_ident,
+                                      gaps > input$gaps,
+                                      mis > input$mis,
+                                      E > input$E)
     pl <- ggplot(data = plotdata,
                  #Use aes_string below so that input$trait is interpreted
                  #correctly.  The other variables need to be quoted
