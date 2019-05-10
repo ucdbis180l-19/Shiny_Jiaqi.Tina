@@ -12,15 +12,14 @@ library(shiny)
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
   
-  # Application title
-  titlePanel("Worm and Plant BLAST Data"),
-
-  # Some helpful information
+  titlePanel("Sliders","Worm and Plant BLAST Data"),
+  
   helpText("This application creates a scatterplot to show how trait affects the relationship between score and sequence length of a worm and plant BLAST.  Please use the radio box below to choose a trait",
            "for plotting"),
-  
-  # Sidebar with a radio box to input which trait will be plotted
+  # Sidebar layout with input and output definitions ----
   sidebarLayout(
+    
+    # Sidebar to demonstrate various slider options ----
     sidebarPanel(
       radioButtons("trait", #the input variable that the value will go into
                    "Choose a trait to display:",
@@ -28,30 +27,43 @@ shinyUI(fluidPage(
                      "gaps",
                      "mis",
                      "E")
-      )),
+      ),
+      # Input: Simple integer interval ----
       sliderInput("pct_ident",
-                "Percent Identity",
-                min = 0,
-                max = 100,
-                value = 20),
+                  "Percent Identity",
+                  min = 0,
+                  max = 100,
+                  value = 20),
       sliderInput("gaps",
-                "Gaps",
-                min = 0,
-                max = 60,
-                value = 10),
-    sliderInput("mis",
-                "Mismatches",
-                min = 0,
-                max = 1200,
-                value = 300),
-    sliderInput("E",
-                "E Value",
-                min = 0,
-                max = 10,
-                value = 2.5),
+                  "Gaps",
+                  min = 0,
+                  max = 60,
+                  value = 10),
+      sliderInput("mis",
+                  "Mismatches",
+                  min = 0,
+                  max = 1200,
+                  value = 300),
+      sliderInput("E",
+                  "E Value",
+                  min = 0,
+                  max = 10,
+                  value = 2.5)),
     
-    # Show a plot of the generated distribution
-    mainPanel(plotOutput("scatterPlot")
-    )
-  )
-))
+    
+    # Main panel for displaying outputs ----
+    mainPanel(
+      # Show a plot of the generated distribution
+      plotOutput("scatterPlot"),
+      # Output: Table summarizing the values entered ----
+      tableOutput("values")
+      
+    ))))
+  
+ 
+  
+
+ 
+                
+  
+  

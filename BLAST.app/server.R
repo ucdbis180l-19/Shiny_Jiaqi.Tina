@@ -36,7 +36,11 @@ shinyServer(function(input, output) {
   output$scatterPlot <- renderPlot({
     
     # set up the plot
-    pl <- ggplot(data = worm_plant,
+    plotdata <- worm_plant %>% filter(pct_ident > input$pct_ident)
+     %>% filter(gaps > input$gaps)
+    %>% filter(mis > input$mis)
+    %>%  filter(E > input$E)
+    pl <- ggplot(data = plotdata,
                  #Use aes_string below so that input$trait is interpreted
                  #correctly.  The other variables need to be quoted
                  aes_string(x="len",
@@ -47,5 +51,32 @@ shinyServer(function(input, output) {
     
     # draw the boxplot for the specified trait
     pl + geom_point()
+ 
   })
-})
+  
+  # Reactive expression to create data frame of all input values ----
+  sliderValues <- reactive({
+    
+    data.frame(
+      Name = c("Percent Identities",
+               "Gaps",
+               "Mismatches",
+               "E Value"
+      ),
+      Value = as.character(c(input$pct_ident,
+                             input$gaps,
+                             input$mis,
+                             input$E)),
+      stringsAsFactors = FALSE)
+    
+  })
+   
+    
+    # Show the values in an HTML table ----
+    output$values <- renderTable({
+      sliderValues()
+    })
+    
+  })
+  
+  
